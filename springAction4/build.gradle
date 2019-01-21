@@ -1,0 +1,53 @@
+apply plugin: 'eclipse'
+apply plugin: 'java'
+apply plugin: 'war'
+
+repositories{
+
+  mavenLocal()
+  mavenCentral()
+}
+
+ dependencies{
+ 
+   compile "org.springframework:spring-context:${springVersion}"
+   compile "org.springframework:spring-webmvc:${springVersion}"
+   compile "org.aspectj:aspectjweaver:${aspectJVersion}"
+   
+   	compile "com.h2database:h2:$h2Version"
+	compile "org.hibernate:hibernate-validator:$hibernateValidatorVersion"
+	compile "org.apache.commons:commons-lang3:$commonsLangVersion"
+	
+	 compile "javax.servlet:jstl:$jstlVersion"
+    providedCompile "javax.servlet:javax.servlet-api:$servletApiVersion"
+    providedCompile "javax.servlet.jsp:jsp-api:$jspApiVersion"
+    providedCompile "javax.el:javax.el-api:$jspElVersion"
+   
+   
+    compile "log4j:log4j:${log4jVersion}"
+   
+
+    testCompile "junit:junit:${junitVersion}"
+    testCompile "org.mockito:mockito-core:${mockitoVersion}"
+    testCompile "org.springframework:spring-test:${springVersion}"
+    testCompile "org.hamcrest:hamcrest-library:$hamcrestVersion"
+    
+    
+    
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.1'
+}
+
+war {
+        baseName = 'springAction4'
+}
+
+    eclipse {
+        wtp {
+                component {
+                        contextPath = 'springAction4'
+                }
+        }
+ 
+     }
+ }
